@@ -1,28 +1,31 @@
 package com.crm.qa.pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.crm.qa.base.TestBase;
+import com.crm.qa.util.TestUtil;
 
 public class LoginPage extends TestBase{
 	
 	//Page Factory - OR:
-	@FindBy(name="username")
+	@FindBy(name="email")
 	WebElement username;
 	
 	@FindBy(name="password")
 	WebElement password;
 	
-	@FindBy(xpath="//input[@type='submit']")
+	@FindBy(xpath="//div[text()='Login']")
 	WebElement loginBtn;
 	
-	@FindBy(xpath="//button[contains(text(),'Sign Up')]")
+	@FindBy(xpath="//a[contains(text(),'Sign Up')]")
 	WebElement signUpBtn;
 	
-	@FindBy(xpath="//img[contains(@class,'img-responsive')]")
+	@FindBy(xpath="//*[@title='free crm home' and @href='https://freecrm.com']")
 	WebElement crmLogo;
 	
 	//Initializing the Page Objects:
@@ -40,6 +43,8 @@ public class LoginPage extends TestBase{
 	}
 	
 	public HomePage login(String un, String pwd){
+		signUpBtn.click();
+		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		username.sendKeys(un);
 		password.sendKeys(pwd);
 		//loginBtn.click();

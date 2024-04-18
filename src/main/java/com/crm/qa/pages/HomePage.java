@@ -10,21 +10,21 @@ import com.crm.qa.base.TestBase;
 
 public class HomePage extends TestBase {
 
-	@FindBy(xpath = "//td[contains(text(),'User: Naveen K')]")
+	@FindBy(xpath = "//span[text()='Ratnasree Pantham']")
 	@CacheLookup
 	WebElement userNameLabel;
 
-	@FindBy(xpath = "//a[contains(text(),'Contacts')]")
+	@FindBy(xpath = "//span[contains(text(),'Contacts')]//parent::a")
 	WebElement contactsLink;
 	
-	@FindBy(xpath = "//a[contains(text(),'New Contact')]")
-	WebElement newContactLink;
+	@FindBy(xpath = "//span[contains(text(),'Calendar')]//parent::a")
+	WebElement calenderLink;
 	
 
-	@FindBy(xpath = "//a[contains(text(),'Deals')]")
+	@FindBy(xpath = "//span[contains(text(),'Deals')]//parent::a")
 	WebElement dealsLink;
 
-	@FindBy(xpath = "//a[contains(text(),'Tasks')]")
+	@FindBy(xpath = "//span[contains(text(),'Tasks')]//parent::a")
 	WebElement tasksLink;
 
 	// Initializing the Page Objects:
@@ -58,11 +58,16 @@ public class HomePage extends TestBase {
 	
 	public void clickOnNewContactLink(){
 		Actions action = new Actions(driver);
-		action.moveToElement(contactsLink).build().perform();
-		newContactLink.click();
+//		action.moveToElement(contactsLink).build().perform();
+		action.click(contactsLink).build().perform();
 		
 	}
-	
+	public void clickOnNewCalenderLink(){
+		Actions action = new Actions(driver);
+//		action.moveToElement(contactsLink).build().perform();
+		action.click(calenderLink).build().perform();
+		
+	}
 	
 	
 	
